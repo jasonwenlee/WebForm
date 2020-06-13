@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,11 @@ namespace WebForm.Models
         public string ContentType { get; set; }
         [JsonProperty("CreateTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTimeOffset CreateTime { get; set; }
+
+        [Display(Name = "Document Description")]
         [JsonProperty("DocumentDescription", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentDescription { get; set; }
+
         [JsonProperty("Hashes", NullValueHandling = NullValueHandling.Ignore)]
         public object Hashes { get; set; }
         [JsonProperty("ObjectKey", NullValueHandling = NullValueHandling.Ignore)]

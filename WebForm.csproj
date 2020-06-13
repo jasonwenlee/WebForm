@@ -174,7 +174,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CreateRequest\Create.cshtml" />
-    <Content Include="Views\AttachDocument\Upload.cshtml" />
+    <Content Include="Views\AttachDocument\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
