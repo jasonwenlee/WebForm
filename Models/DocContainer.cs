@@ -5,11 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace WebForm.Models
 {
     public class DocContainer
     {
+        [Display(Name = "File Upload")]
         [JsonProperty("Address", NullValueHandling = NullValueHandling.Ignore)]
         public string Address { get; set; }
         [JsonProperty("ContentType", NullValueHandling = NullValueHandling.Ignore)]
@@ -25,5 +27,8 @@ namespace WebForm.Models
         public object Hashes { get; set; }
         [JsonProperty("ObjectKey", NullValueHandling = NullValueHandling.Ignore)]
         public ObjectKey ObjectKey { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
+
     }
 }

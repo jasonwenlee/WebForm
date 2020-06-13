@@ -27,6 +27,7 @@ namespace WebForm
                                         SecurityProtocolType.Tls |
                                         SecurityProtocolType.Tls11 |
                                         SecurityProtocolType.Tls12;
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

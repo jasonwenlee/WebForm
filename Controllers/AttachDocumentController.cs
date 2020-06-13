@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Configuration;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace WebForm.Controllers
 {
@@ -38,30 +39,39 @@ namespace WebForm.Controllers
 
         // POST: AttachDocument/Create
         [HttpPost]
-        public async Task<ActionResult> Create(FormCollection collection)
+        public async Task<ActionResult> Create([Bind(Include = "DocumentDescription,File")] DocContainer document)
         {
             try
             {
                 // TODO: Add insert logic here
                 // Create Container for chosen Request. Change path to "Request" and use requestID.
-                DocContainer con = new DocContainer() { DocumentDescription = "Request document", Address = $"file://conquest_documents/Request/{requestID}/JasonTestDocument.txt", ContentType = "text/plain", };
+                DocContainer con = new DocContainer();
+                con.DocumentDescription = document.DocumentDescription;
+                //To Get File Extension  
+                string FileExtension = Path.GetExtension(document.File.FileName);
+                con.Address = $"file://conquest_documents/Request/{requestID}/StoreDocument{FileExtension}";
+                con.ContentType = document.File.ContentType;
+                
                 con.ObjectKey = new ObjectKey() { ObjectType = "ObjectType_Request", Int32Value = int.Parse(requestID) };
                 HttpResponseMessage createFileResponse = await client.PostAsJsonAsync(API_ADD_DOCUMENT, con);
+
                 // Check response
                 if (!createFileResponse.IsSuccessStatusCode)
                 {
                     throw new System.ArgumentException(createFileResponse.StatusCode.ToString(), "original");
                 }
-                // Upload document to Container for chosen Request.
+
+                // Upload document content to Container for chosen Request.
+                string result = new StreamReader(document.File.InputStream).ReadToEnd();
                 DocDataObject docDataObject = JsonConvert.DeserializeObject<DocDataObject>(createFileResponse.Content.ReadAsStringAsync().Result);
-                HttpResponseMessage uploadDocumentResponse = await client.PutAsJsonAsync(docDataObject.UploadUri, "Hello");
+                HttpResponseMessage uploadDocumentResponse = await client.PutAsJsonAsync(docDataObject.UploadUri, result);
 
                 //Check response
                 if (!uploadDocumentResponse.IsSuccessStatusCode)
                 {
                     throw new System.ArgumentException(uploadDocumentResponse.StatusCode.ToString(), "Cannot upload text");
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             catch
             {
