@@ -7,7 +7,7 @@ Web form for Conquest App. This is a simple web application that creates a reque
 3. Second page is displayed after creating a successful request. This page displays the request ID, a doc. description field, and a file upload input.
 4. Third page is displayed after a file is successfully uploaded.
 
-## Feature
+## Features
 Main page requires all fields to be entered before proceeding just like in the native mobile application.
 Web Form | Native mobile application
 --------------------- | ------------------
