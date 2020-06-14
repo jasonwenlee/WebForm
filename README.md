@@ -1,5 +1,5 @@
 # Conquest WebForm
-Web form for Conquest App. This is a simple MVC web application that creates a request and allows the requestor to attach a document to the aforementioned request. This webform is designed based on the **[unit test](https://github.com/jasonwenlee/ConquestTests)** performed earlier in the assessment.
+Web form for Conquest App. This is a simple MVC web application that allows a user to create a request and attach a document to this same request. This webform is designed based on the **[unit test](https://github.com/jasonwenlee/ConquestTests)** performed earlier in the assessment.
 
 ## Layout
 1. This is an MVC web form with three pages.
