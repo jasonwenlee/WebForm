@@ -19,6 +19,7 @@ namespace WebForm.Models
         [JsonProperty("CreateTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTimeOffset CreateTime { get; set; }
 
+        [Required]
         [Display(Name = "Document Description")]
         [JsonProperty("DocumentDescription", NullValueHandling = NullValueHandling.Ignore)]
         public string DocumentDescription { get; set; }
